@@ -73,3 +73,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+
+## Docker
+
+[Docker setup](https://blog.logrocket.com/containerized-development-nestjs-docker/)
+`docker-compose up --build -V`

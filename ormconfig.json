@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "postgres",
+  "port": 5432,
+  "username": "ydr",
+  "password": "ydrPassword",
+  "database": "ydrUserService",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
