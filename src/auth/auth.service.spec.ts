@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
-
+import { jwtServiceMockFactory } from 'ydr-nest-common';
 describe('AuthService', () => {
   let service: AuthService;
 
