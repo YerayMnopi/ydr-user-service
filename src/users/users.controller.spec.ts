@@ -2,6 +2,8 @@ import { UsersController } from './users.controller';
 jest.mock('./users.service');
 import { Test } from '@nestjs/testing';
 import { UsersService } from './users.service';
+import { userMockFactory } from './user.mock';
+import * as httpMocks from 'node-mocks-http';
 
 describe('UsersController', () => {
   let usersController: UsersController;
@@ -19,10 +21,23 @@ describe('UsersController', () => {
 
   describe('findAll', () => {
     it('should return an array of users', async () => {
-      const result = ['test'];
-      jest.spyOn(UsersService, 'findAll').mockImplementation(() => result);
+      const result = [];
+      jest.spyOn(usersService, 'findAll').mockImplementation(async() => result);
 
-      expect(await UsersController.findAll()).toBe(result);
+      expect(await usersController.findAll()).toBe(result);
+    });
+  });
+
+  describe('create', () => {
+    it('should accept a post request to create users', async() => {
+      const result = userMockFactory();
+      jest.spyOn(usersService, 'create').mockImplementation(async() => result);
+      const request = httpMocks.createRequest({
+        method: 'POST',
+        body: result
+      });
+
+      expect(await usersController.create(request.body)).toBe(result);  
     });
   });
 });

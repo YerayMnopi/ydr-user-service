@@ -1,7 +1,25 @@
-import { Local.Strategy } from './local.strategy';
+import { LocalStrategy } from './local.strategy';
+import { AuthService } from './auth.service';
+import { MockType } from 'ydr-nest-common';
+jest.mock('./auth.service');
 
-describe('Local.Strategy', () => {
+export const authServiceMockFactory: () => MockType<AuthService> = jest.fn(() => ({
+  validateUser: jest.fn(),
+  login: jest.fn(),
+ }));
+
+describe('LocalStrategy', () => {
+  let localStrategy: LocalStrategy;
+  let authServiceMock: MockType<AuthService>;
+
+  beforeEach(() => {
+    // Clear all instances and calls to constructor and all methods:
+    authServiceMock = authServiceMockFactory();
+    // @ts-ignore
+    localStrategy = new LocalStrategy(authServiceMock)
+  });
+
   it('should create an instance', () => {
-    expect(new Local.Strategy()).toBeTruthy();
+    expect(localStrategy).toBeTruthy();
   });
 });
