@@ -4,7 +4,7 @@ import { authServiceMockFactory } from './local.strategy.spec';
 import { AuthService } from './auth.service';
 import { LoginPayload } from './dtos/login-payload';
 import { MockType } from 'ydr-nest-common';
-import { userMockFactory } from '../users/user.mock';
+import { userResponseMockFactory } from '../users/user.mock';
 
 describe('AuthController', () => {
   let authController: AuthController;
@@ -36,7 +36,7 @@ describe('AuthController', () => {
         password: 'pass'
       }
 
-      const {password, ...user} = userMockFactory();
+      const user = userResponseMockFactory();
       
 
       authService.validateUser.mockImplementation(() => Promise.resolve(user));

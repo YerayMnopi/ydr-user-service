@@ -12,7 +12,7 @@ export class AuthController {
   async login(@Body() loginPayload: LoginPayload) {
     if (loginPayload && loginPayload.email && loginPayload.password) {
       const user = await this.authService.validateUser(loginPayload.email, loginPayload.password);
-      
+      console.log(user);
       if (user) {
         return await this.authService.login(user);
       }

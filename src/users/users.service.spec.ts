@@ -4,7 +4,9 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { MockType } from 'ydr-nest-common';
-import { userMockFactory } from './user.mock';
+import { userMockFactory, userResponseMockFactory } from './user.mock';
+import { UserCreatePayload } from './user-create.payload';
+import { UserResponse } from './user-response';
 
 // TODO: error while trying to import this function from artifact
 export const repositoryMockFactory: <T>() => MockType<Partial<Repository<T>>> = jest.fn(() => {
@@ -40,8 +42,8 @@ describe('UsersService', () => {
   });
 
   describe('create', () => {
-    const userToCreate: User = userMockFactory();
-    let createdUser: User;
+    const userToCreate: UserCreatePayload = userMockFactory();
+    let createdUser: UserResponse;
 
     beforeEach(async() => {
       repository.save.mockResolvedValueOnce(userToCreate as never); 
@@ -59,7 +61,7 @@ describe('UsersService', () => {
 
   describe('findOne', () => {
     it('should find a user by id', async() => {
-      const user: User = userMockFactory();
+      const user = userResponseMockFactory();
       
       await service.findOne(user.id);
 
@@ -69,11 +71,21 @@ describe('UsersService', () => {
 
   describe('findOneByEmail', () => {
     it('should find a user by email', async() => {
-      const user: User = userMockFactory();
+      const user = userResponseMockFactory();
       
       await service.findOneByEmail(user.email);
 
       expect(repository.findOne).toBeCalledWith( {where: {email: user.email}});
+    });
+  });
+
+  describe('checkCredentials', () => {
+    it('should check user crendentials', async() => {
+      const user = userMockFactory();
+      
+      await service.checkCredentials(user.email, user.password);
+
+      expect(repository.findOne).toBeCalledWith( {where: {email: user.email, password: user.password}});
     });
   });
 });

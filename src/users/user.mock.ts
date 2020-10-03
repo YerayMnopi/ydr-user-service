@@ -1,9 +1,9 @@
-import { User } from './user.entity';
 import { Gender } from './gender.enum';
 import { Country } from './country-code.enum';
 import * as faker from 'faker';
+import { UserResponse } from './user-response';
 
-export const userMockFactory = (): User => {
+export const userResponseMockFactory = (): UserResponse => {
     const name = faker.name.firstName();
 
     return {
@@ -17,7 +17,6 @@ export const userMockFactory = (): User => {
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
         validated: false,
-        password: 'password',
         birthDate: new Date(),
         gender: Gender.Female,
         phone: 'test',
@@ -27,6 +26,9 @@ export const userMockFactory = (): User => {
         postalCode: 'test',
         commercialCommunications: false,
         legitimateInterest: false,
-        termsAndConditions: false
+        termsAndConditions: false,
+        deletedAt: null,
     };
 };
+
+export const userMockFactory = (): UserResponse & {password: string} => ({...userResponseMockFactory(), ...{password: 'test'}});

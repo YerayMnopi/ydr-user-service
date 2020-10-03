@@ -1,3 +1,8 @@
+process.env['PASSWORD_SECRET_KEY'] = 'd85117047fd06d3afa79b6e44ee3a52eb426fc24c3a2e3667732e8da0342b4da';
+process.env['JWT_SECRET_KEY'] = 'test';
+process.env['JWT_TOKEN_LIFETIME'] = '60';
+
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
@@ -8,7 +13,9 @@ import { AuthModule } from '../src/auth/auth.module';
 import { UsersModule } from '../src/users/users.module';
 import { Repository } from 'typeorm';
 import { User } from '../src/users/user.entity';
-import { userMockFactory } from '../src/users/user.mock';
+import { userResponseMockFactory, userMockFactory } from '../src/users/user.mock';
+import { UserResponse } from 'src/users/user-response';
+import { UserCreatePayload } from 'src/users/user-create.payload';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -40,7 +47,7 @@ describe('AppController (e2e)', () => {
   describe('login (/auth)', () => {
     const endpoint = '/auth';
     let loginPayload: LoginPayload;
-    let user: User;
+    let user: UserCreatePayload;
 
     beforeEach(async() => {
       user = userMockFactory();
@@ -82,11 +89,25 @@ describe('AppController (e2e)', () => {
 
   });
 
+  describe('POST /users', () => {
+    const endpoint = '/users';
+    let user: UserCreatePayload;
+
+    beforeEach(async() => {
+      user = userMockFactory();
+    });
+
+    it('should create a new user', () => {
+      return request(app.getHttpServer()).post(endpoint).send(user)
+        .expect(201);
+    });
+  });
+
   describe('GET /users', () => {
     const adminUser = userMockFactory();
     let authResponse: {body: LoginResponse};
 
-    beforeAll(async(done) => {
+    beforeEach(async(done) => {
       await repository.save([
         adminUser,
         userMockFactory(),
@@ -99,6 +120,14 @@ describe('AppController (e2e)', () => {
           authResponse = response;
           done();
         });
+    });
+
+    it('should return Unauthorized', async () => {
+      await request.agent(app.getHttpServer())
+        .get('/users')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(401);
     });
 
     it('should return an array of users', async () => {

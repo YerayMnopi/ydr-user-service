@@ -28,7 +28,7 @@ export class User extends SlugeableEntity {
     @IsBoolean()
     validated: boolean = false;
 
-    @Column('varchar', { 
+    @Column('varchar', {
         nullable: false,
         transformer: new EncryptionTransformer(MyEncryptionTransformerConfig)
     })

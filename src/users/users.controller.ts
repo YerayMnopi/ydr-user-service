@@ -1,22 +1,23 @@
 import { UsersService } from './users.service';
 import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
-import { User } from './user.entity';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'ydr-nest-common';
+import { UserCreatePayload } from './user-create.payload';
+import { UserResponse } from './user-response';
 
-@Controller()
+@Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService
   ) {}
 
   @UseGuards(JwtAuthGuard)
-  @Get('users')
-  async findAll() {
+  @Get()
+  async findAll(): Promise<UserResponse[]> {
     return this.usersService.findAll();
   }
 
-  @Post('users')
-  async create(@Body() userToCreate: User) {
+  @Post()
+  async create(@Body() userToCreate: UserCreatePayload): Promise<UserResponse> {
     return this.usersService.create(userToCreate);
   }
 }

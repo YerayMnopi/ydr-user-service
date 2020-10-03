@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserCreatePayload } from './user-create.payload';
+import { UserResponse } from './user-response';
 
 @Injectable()
 export class UsersService {
@@ -11,19 +13,35 @@ export class UsersService {
     private readonly usersRepository: Repository<User>
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  async findAll(): Promise<UserResponse[]> {
+    return this.usersRepository.find({
+      select: Object.keys(UserResponse)
+    });
   }
 
-  async findOne(id: string): Promise<User | undefined> {
-    return this.usersRepository.findOne({where: {id: id}});
+  async findOne(id: string): Promise<UserResponse | undefined> {
+    return this.usersRepository.findOne({
+      select: Object.keys(UserResponse),
+      where: {id: id}
+    });
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
+  async findOneByEmail(email: string): Promise<UserResponse | undefined> {
     return this.usersRepository.findOne({where: {email: email}});
   }
 
-  async create(userToCreate: User): Promise<User | undefined> {
+  async create(userToCreate: UserCreatePayload): Promise<UserResponse | undefined> {
     return this.usersRepository.save(userToCreate);
+  }
+
+  async checkCredentials(email: string, password: string): Promise<UserResponse | undefined> {
+
+    const user = await this.usersRepository.findOne({
+      where: {
+        email: email,
+      } 
+    });
+
+    return password === user.password ? user : null;
   }
 }

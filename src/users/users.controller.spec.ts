@@ -2,7 +2,7 @@ import { UsersController } from './users.controller';
 jest.mock('./users.service');
 import { Test } from '@nestjs/testing';
 import { UsersService } from './users.service';
-import { userMockFactory } from './user.mock';
+import { userResponseMockFactory } from './user.mock';
 import * as httpMocks from 'node-mocks-http';
 
 describe('UsersController', () => {
@@ -30,7 +30,7 @@ describe('UsersController', () => {
 
   describe('create', () => {
     it('should accept a post request to create users', async() => {
-      const result = userMockFactory();
+      const result = userResponseMockFactory();
       jest.spyOn(usersService, 'create').mockImplementation(async() => result);
       const request = httpMocks.createRequest({
         method: 'POST',
