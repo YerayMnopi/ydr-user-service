@@ -85,7 +85,7 @@ describe('UsersService', () => {
       
       await service.checkCredentials(user.email, user.password);
 
-      expect(repository.findOne).toBeCalledWith( {where: {email: user.email, password: user.password}});
+      expect(repository.findOne).toBeCalledWith( {where: {email: user.email}});
     });
   });
 });

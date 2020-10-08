@@ -14,14 +14,11 @@ export class UsersService {
   ) {}
 
   async findAll(): Promise<UserResponse[]> {
-    return this.usersRepository.find({
-      select: Object.keys(UserResponse)
-    });
+    return this.usersRepository.find();
   }
 
   async findOne(id: string): Promise<UserResponse | undefined> {
     return this.usersRepository.findOne({
-      select: Object.keys(UserResponse),
       where: {id: id}
     });
   }
@@ -42,6 +39,6 @@ export class UsersService {
       } 
     });
 
-    return password === user.password ? user : null;
+    return user && password === user.password ? user : null;
   }
 }

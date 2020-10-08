@@ -12,7 +12,6 @@ export class AuthService {
 
   async validateUser(email: string, pass: string): Promise<UserResponse | null> {
     const user = await this.usersService.checkCredentials(email, pass);
-    console.log('user validated');
     return !!user ? user : null;
   }
 
