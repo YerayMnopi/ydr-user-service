@@ -61,3 +61,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+postgresHost: my-release-postgresql.default.svc.cluster.local
+postgresPort: 5432
+postgresDatabase: ydr_users_db
+postgresUsername: postgres
+postgresPassword: passwd
+appPort: 3000

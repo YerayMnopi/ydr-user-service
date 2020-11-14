@@ -1,8 +1,3 @@
-process.env['PASSWORD_SECRET_KEY'] = 'd85117047fd06d3afa79b6e44ee3a52eb426fc24c3a2e3667732e8da0342b4da';
-process.env['JWT_SECRET_KEY'] = 'test';
-process.env['JWT_TOKEN_LIFETIME'] = '60';
-
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
@@ -13,9 +8,10 @@ import { AuthModule } from '../src/auth/auth.module';
 import { UsersModule } from '../src/users/users.module';
 import { Repository } from 'typeorm';
 import { User } from '../src/users/user.entity';
-import { userResponseMockFactory, userMockFactory } from '../src/users/user.mock';
-import { UserResponse } from 'src/users/user-response';
+import { userMockFactory } from '../src/users/user.mock';
 import { UserCreatePayload } from 'src/users/user-create.payload';
+import { ConfigModule } from '@nestjs/config';
+import { ormE2eConfig } from 'ydr-nest-common';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -24,19 +20,10 @@ describe('AppController (e2e)', () => {
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
+        ConfigModule.forRoot(),
+        TypeOrmModule.forRootAsync(ormE2eConfig),
         AuthModule, 
         UsersModule,
-        TypeOrmModule.forRoot({
-          type: 'postgres',
-          host: 'localhost',
-          port: 5432,
-          username: 'postgres',
-          password: 'passwd',
-          database: 'ydr_users_db_e2e_test',
-          entities: ['src/**/*.entity.ts'],
-          synchronize: true,
-          keepConnectionAlive: true
-        }),
       ]}).compile();
 
     app = moduleFixture.createNestApplication();

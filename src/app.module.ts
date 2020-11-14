@@ -2,12 +2,13 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { EasyconfigModule } from  'nestjs-easyconfig';
+import { ConfigModule } from '@nestjs/config';
+import { ormConfig } from 'ydr-nest-common';
 
 @Module({
   imports: [
-    EasyconfigModule.register({path: '.env'}),
-    TypeOrmModule.forRoot(),
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync(ormConfig),
     AuthModule,
     UsersModule
   ],

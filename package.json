@@ -27,8 +27,10 @@
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/jwt": "^6.1.2",
+    "@nestjs/microservices": "^7.5.1",
     "@nestjs/passport": "^6.2.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.6",
@@ -38,6 +40,8 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
+    "helmet": "^4.1.1",
+    "kafkajs": "^1.14.0",
     "nestjs-easyconfig": "^2.0.6",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
@@ -50,8 +54,9 @@
     "swagger-ui-express": "^4.1.4",
     "typeorm": "^0.2.24",
     "typeorm-encrypted": "^0.5.5",
+    "x-xss-protection": "^2.0.0",
     "ydr-course-artifact": "^1.0.3",
-    "ydr-nest-common": "^1.0.5"
+    "ydr-nest-common": "^1.0.11"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",

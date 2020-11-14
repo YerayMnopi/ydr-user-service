@@ -6,12 +6,13 @@ import { UserResponse } from './user-response';
 
 @Controller('users')
 export class UsersController {
+
   constructor(
     private readonly usersService: UsersService
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
+  @UseGuards(JwtAuthGuard)
   async findAll(): Promise<UserResponse[]> {
     return this.usersService.findAll();
   }
@@ -20,4 +21,6 @@ export class UsersController {
   async create(@Body() userToCreate: UserCreatePayload): Promise<UserResponse> {
     return this.usersService.create(userToCreate);
   }
+
+
 }
