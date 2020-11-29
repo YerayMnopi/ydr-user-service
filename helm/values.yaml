@@ -62,9 +62,18 @@ tolerations: []
 
 affinity: {}
 
-postgresHost: my-release-postgresql.default.svc.cluster.local
+postgresHost: 165.22.121.147
 postgresPort: 5432
 postgresDatabase: ydr_users_db
 postgresUsername: postgres
 postgresPassword: passwd
 appPort: 3000
+postgresE2eUsername: postgres
+postgresE2ePassword: passwd
+postgresE2eHost: 165.22.121.147
+postgresE2ePort: 5432
+postgresE2eDatabase: ydr_users_db_e2e_test
+jwtSecretKey: "&XFgcGsK@eYps@4MPENrFqLaTW%*jp7A5XFZplMng08"
+jwtTokenLifetime: 600
+passwordSecretKey: d85117047fd06d3afa79b6e44ee3a52eb426fc24c3a2e3667732e8da0342b4da
+kafkaHost: 'kafka.default.svc.cluster.local:9092'
