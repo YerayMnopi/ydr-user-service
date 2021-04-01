@@ -4,6 +4,7 @@ import { Test } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { userResponseMockFactory } from './user.mock';
 import * as httpMocks from 'node-mocks-http';
+import { Request } from 'express';
 
 describe('UsersController', () => {
   let usersController: UsersController;
@@ -17,6 +18,20 @@ describe('UsersController', () => {
 
     usersService = moduleRef.get<UsersService>(UsersService);
     usersController = moduleRef.get<UsersController>(UsersController);
+  });
+
+  describe('me', () => {
+    it('should return the logged users', async () => {
+      const result = [];
+      const request: Partial<Request> = {
+        user: {
+          id: 'test'
+        }
+      }
+      jest.spyOn(usersService, 'findOne').mockImplementation(async() => result);
+
+      expect(await usersController.me(request)).toBe(result);
+    });
   });
 
   describe('findAll', () => {

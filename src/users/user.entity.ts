@@ -70,7 +70,7 @@ export class User extends SlugeableEntity {
 
 
 
-    // GRPC
+    // GDPR
     @Column('bool', {default: false})
     @IsBoolean()
     commercialCommunications: boolean = false;

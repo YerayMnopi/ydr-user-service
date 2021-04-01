@@ -10,7 +10,7 @@ import { ormConfig } from 'ydr-nest-common';
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync(ormConfig),
     AuthModule,
-    UsersModule
+    UsersModule,
   ],
 })
 export class AppModule {}
