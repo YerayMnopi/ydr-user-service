@@ -12,6 +12,7 @@ const kafkaClientConfig: ClientsProviderAsyncOptions = {
   imports: [ConfigModule],
   useFactory: (configService: ConfigService) => ({
     transport: Transport.KAFKA,
+    ssl: true,
     options: {
       client: {
         clientId: 'users',

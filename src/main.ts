@@ -3,7 +3,10 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule, {
+    cors: true, 
+    logger: ['log', 'error', 'warn', 'debug','verbose'] 
+  });
 
   const options = new DocumentBuilder()
     .setTitle('YDR users service')

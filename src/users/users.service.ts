@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,6 +7,7 @@ import { UserResponse } from './user-response';
 
 @Injectable()
 export class UsersService {
+  private readonly logger = new Logger(UsersService.name);
 
   constructor(
     @InjectRepository(User)
@@ -18,9 +19,11 @@ export class UsersService {
   }
 
   async findOne(id: string): Promise<UserResponse | undefined> {
-    return this.usersRepository.findOne({
-      where: {id: id}
+    let user = await this.usersRepository.findOne({
+      where: {id: id},
     });
+    delete user.password;
+    return user;
   }
 
   async findOneByEmail(email: string): Promise<UserResponse | undefined> {
@@ -32,13 +35,13 @@ export class UsersService {
   }
 
   async checkCredentials(email: string, password: string): Promise<UserResponse | undefined> {
-
+    this.logger.log(`Checking ${email} user credentials`);
     const user = await this.usersRepository.findOne({
       where: {
         email: email,
-      } 
+      }
     });
-
+    this.logger.log(user && password === user.password);
     return user && password === user.password ? user : null;
   }
 }

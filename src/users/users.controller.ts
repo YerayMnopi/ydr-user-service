@@ -1,5 +1,5 @@
 import { UsersService } from './users.service';
-import { Controller, Get, Post, Body, UseGuards, Req, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Req, Param, Logger } from '@nestjs/common';
 import { JwtAuthGuard } from 'ydr-nest-common';
 import { UserCreatePayload } from './user-create.payload';
 import { UserResponse } from './user-response';
@@ -7,6 +7,7 @@ import { Request } from 'express';
 
 @Controller('users')
 export class UsersController {
+  private readonly logger = new Logger(UsersController.name);
 
   constructor(
     private readonly usersService: UsersService,
@@ -16,6 +17,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   async me(@Req() request: Request): Promise<UserResponse> {
     const user: Partial<UserResponse> = request.user;
+    this.logger.log(`Getting user ${user.id}`);
     return this.usersService.findOne(user.id);
   }
 

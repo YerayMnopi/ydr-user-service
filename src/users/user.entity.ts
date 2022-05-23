@@ -5,6 +5,7 @@ import { Gender } from "./gender.enum";
 import { Country } from "./country-code.enum";
 import { MyEncryptionTransformerConfig } from "./encryption-config";
 import { EncryptionTransformer } from "typeorm-encrypted";
+import { Exclude } from "class-transformer";
 
 @Entity('users')
 export class User extends SlugeableEntity {
@@ -30,7 +31,7 @@ export class User extends SlugeableEntity {
 
     @Column('varchar', {
         nullable: false,
-        transformer: new EncryptionTransformer(MyEncryptionTransformerConfig)
+        transformer: new EncryptionTransformer(MyEncryptionTransformerConfig),
     })
     password: string;
 

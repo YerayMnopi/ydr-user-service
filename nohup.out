@@ -1,0 +1,74 @@
+
+> ydr-user-service@0.0.1 start /Users/n226510/yeray/nest/ydr-user-service
+> nest start
+
+(node:2234) Warning: Accessing non-existent property 'cat' of module exports inside circular dependency
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2234) Warning: Accessing non-existent property 'cd' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'chmod' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'cp' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'dirs' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'pushd' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'popd' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'echo' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'tempdir' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'pwd' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'exec' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'ls' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'find' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'grep' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'head' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'ln' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'mkdir' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'rm' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'mv' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'sed' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'set' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'sort' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'tail' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'test' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'to' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'toEnd' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'touch' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'uniq' of module exports inside circular dependency
+(node:2234) Warning: Accessing non-existent property 'which' of module exports inside circular dependency
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +376ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mYdrJwtModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mClientsModule dependencies initialized[39m[38;5;3m +115ms[39m
+[32m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[31m[Nest] 3993   - [39m06/02/2022 13:33:14   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (1)...[39m[38;5;3m +4ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:17   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (2)...[39m[38;5;3m +3004ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:20   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (3)...[39m[38;5;3m +3007ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:23   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (4)...[39m[38;5;3m +3007ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:26   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (5)...[39m[38;5;3m +3002ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:29   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (6)...[39m[38;5;3m +3003ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:32   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (7)...[39m[38;5;3m +3004ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:35   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (8)...[39m[38;5;3m +3003ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:38   [38;5;3m[TypeOrmModule] [39m[31mUnable to connect to the database. Retrying (9)...[39m[38;5;3m +3003ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+[31m[Nest] 3993   - [39m06/02/2022 13:33:38   [38;5;3m[ExceptionHandler] [39m[31mconnect ECONNREFUSED 127.0.0.1:5432[39m[38;5;3m +1ms[39m
+Error: connect ECONNREFUSED 127.0.0.1:5432
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)

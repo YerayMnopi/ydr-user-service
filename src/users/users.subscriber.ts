@@ -11,25 +11,25 @@ import { Inject } from '@nestjs/common';
 @EventSubscriber()
 export class UserSubscriber implements EntitySubscriberInterface<User> {
 
-constructor(
-    connection: Connection,
-    @Inject('KAFKA_CLIENT') private readonly client: ClientKafka 
-) {
-    connection.subscribers.push(this);
-}
+    constructor(
+        connection: Connection,
+        @Inject('KAFKA_CLIENT') private readonly client: ClientKafka 
+    ) {
+        connection.subscribers.push(this);
+    }
 
-async onModuleInit() {
-    this.client.subscribeToResponseOf('ydr-users');
-    await this.client.connect();
-}
+    async onModuleInit() {
+        this.client.subscribeToResponseOf('ydr-users');
+        await this.client.connect();
+    }
 
-listenTo() {
-    return User;
-}
+    listenTo() {
+        return User;
+    }
 
-afterInsert(event: InsertEvent<User>) {
-    this.client.send('ydr-users', event.entity).subscribe(
-        (value) => console.log(value)
-    ); 
-}
+    afterInsert(event: InsertEvent<User>) {
+        this.client.send('ydr-users', event.entity).subscribe(
+            (value) => console.log(value)
+        ); 
+    }
 }

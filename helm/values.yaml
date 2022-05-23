@@ -41,7 +41,7 @@ ingress:
   annotations: 
     kubernetes.io/ingress.class: traefik
   hosts:
-    - host: api.localhost
+    - host: api.workoutpeer.com
       paths: [/users, /auth]
   tls: []
   #  - secretName: chart-example-tls
